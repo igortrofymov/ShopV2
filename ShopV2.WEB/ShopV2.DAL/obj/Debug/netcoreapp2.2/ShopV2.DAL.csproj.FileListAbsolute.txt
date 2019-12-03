@@ -1,0 +1,6 @@
+D:\DotNetProjects\ShopV2\ShopV2.WEB\ShopV2.DAL\bin\Debug\netcoreapp2.2\ShopV2.DAL.deps.json
+D:\DotNetProjects\ShopV2\ShopV2.WEB\ShopV2.DAL\bin\Debug\netcoreapp2.2\ShopV2.DAL.dll
+D:\DotNetProjects\ShopV2\ShopV2.WEB\ShopV2.DAL\obj\Debug\netcoreapp2.2\ShopV2.DAL.csprojAssemblyReference.cache
+D:\DotNetProjects\ShopV2\ShopV2.WEB\ShopV2.DAL\obj\Debug\netcoreapp2.2\ShopV2.DAL.csproj.CoreCompileInputs.cache
+D:\DotNetProjects\ShopV2\ShopV2.WEB\ShopV2.DAL\obj\Debug\netcoreapp2.2\ShopV2.DAL.AssemblyInfoInputs.cache
+D:\DotNetProjects\ShopV2\ShopV2.WEB\ShopV2.DAL\obj\Debug\netcoreapp2.2\ShopV2.DAL.AssemblyInfo.cs
