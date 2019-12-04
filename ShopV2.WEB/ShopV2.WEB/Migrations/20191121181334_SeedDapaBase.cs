@@ -10,17 +10,17 @@ namespace ShopV2.WEB.Migrations
             migrationBuilder.Sql("insert into categories (name, description) values ('home','house stuff')");
             migrationBuilder.Sql("insert into categories (name, description) values ('clothes','clothes')");
 
-            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price) values ('Seat Ibiza',0,GetDate(),(Select ID from categories where name = 'car'),20000)");
-            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price) values ('Seat Leon',0,GetDate(),(Select ID from categories where name = 'car'),25000)");
-            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price) values ('VW Golf',0,GetDate(),(Select ID from categories where name = 'car'),25000)");
+            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price, description) values ('Seat Ibiza',0,GetDate(),(Select ID from categories where name = 'car'),20000, 'small car')");
+            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price, description) values ('Seat Leon',0,GetDate(),(Select ID from categories where name = 'car'),25000, 'middle size car')");
+            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price, description) values ('VW Golf',0,GetDate(),(Select ID from categories where name = 'car'),25000, 'good car')");
 
-            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price) values ('2k apartment',0,GetDate(),(Select ID from categories where name = 'home'), 25000)");
-            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price) values ('3k apartment',0,GetDate(),(Select ID from categories where name = 'home'),40000)");
-            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price) values ('1k apartment',0,GetDate(),(Select ID from categories where name = 'home'),22000)");
+            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price, description) values ('2k apartment',0,GetDate(),(Select ID from categories where name = 'home'), 25000, 'for small family')");
+            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price, description) values ('3k apartment',0,GetDate(),(Select ID from categories where name = 'home'),40000, 'for big family')");
+            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price, description) values ('1k apartment',0,GetDate(),(Select ID from categories where name = 'home'),22000,'forever alone')");
 
-            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price) values ('t-shirt',0,GetDate(),(Select ID from categories where name = 'clothes'),15)");
-            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price) values ('pants',0,GetDate(),(Select ID from categories where name = 'clothes'),20)");
-            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price) values ('jacket',0,GetDate(),(Select ID from categories where name = 'clothes'),50)");
+            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price, description) values ('t-shirt',0,GetDate(),(Select ID from categories where name = 'clothes'),15, 'tShort')");
+            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price, description) values ('pants',0,GetDate(),(Select ID from categories where name = 'clothes'),20, 'pants')");
+            migrationBuilder.Sql("insert into products (name, sold, created, CategoryId, Price, description) values ('jacket',0,GetDate(),(Select ID from categories where name = 'clothes'),50,'jacket')");
 
         }
 

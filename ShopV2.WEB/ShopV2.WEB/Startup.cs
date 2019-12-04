@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,7 +13,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using ShopV2.BLL.Interfaces;
+using ShopV2.BLL.Services;
 using ShopV2.DAL;
+using ShopV2.DAL.Interfaces;
+using ShopV2.DAL.Repositories;
 
 namespace ShopV2.WEB
 {
@@ -36,6 +41,10 @@ namespace ShopV2.WEB
             services.AddDbContext<ShopDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly("ShopV2.WEB")));
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductService, ProductService>();
+
+            services.AddAutoMapper(typeof(MapResolver));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
