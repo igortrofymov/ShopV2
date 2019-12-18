@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShopV2.BLL.DTO
+namespace Core.WEB
 {
-    public class ProductDTO
+    public class ProductWEB
     {
-        public int Id { get; set; }
+        public int ProductId { get; set; }
         public string Name { get; set; }
+
+        public int Sold { get; set; }
+        public DateTime Created { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
-        public int? CategoryId { get; set; }
     }
 }

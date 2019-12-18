@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.BLL;
+using Core.DAL;
+using Core.WEB;
 using Microsoft.AspNetCore.Mvc;
-using ShopV2.BLL.DTO;
 using ShopV2.BLL.Interfaces;
 
 namespace ShopV2.WEB.Controllers
@@ -13,18 +16,21 @@ namespace ShopV2.WEB.Controllers
     public class CategoriesController : Controller
     {
         private IProductService productService;
+        private  IMapper mapper;
 
         public CategoriesController(IProductService productService, IMapper mapper)
         {
             this.productService = productService;
+            this.mapper = mapper;
         }
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductDTO>> GetAllProducts()
+        public ActionResult<IEnumerable<ProductWEB>> GetAllProducts()
         {
-            IEnumerable<ProductDTO> products = productService.GetAll();
-            return products.ToList();
+        {
+                IEnumerable<ProductBLL> products = productService.GetAll();
+           return mapper.Map<List<ProductBLL>, List<ProductWEB>>(products.ToList());
         }
     }
 }

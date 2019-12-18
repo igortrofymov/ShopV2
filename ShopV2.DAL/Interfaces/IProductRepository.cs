@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ShopV2.DAL.Models;
+using Core.DAL;
 
 namespace ShopV2.DAL.Interfaces
 {

@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShopV2.BLL.DTO
+namespace Core.DAL
 {
-    public class ProductFilterDTO
+    public class ProductFilter
     {
         public int? PriceFrom { get; set; }
         public int? PriceTo { get; set; }
         public string Name { get; set; }
-        public IEnumerable<int> CatIds { get; set; }
+        public List<int> CatIds { get; set; }
 
-        public ProductFilterDTO()
+        public ProductFilter()
         {
             CatIds = new List<int>();
         }

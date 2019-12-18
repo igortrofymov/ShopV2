@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShopV2.DAL.Models
+namespace Core.BLL
 {
-    public class ProductFilter
+    public class ProductFilterBLL
     {
         public int? PriceFrom { get; set; }
         public int? PriceTo { get; set; }
         public string Name { get; set; }
-        public List<int> CatIds { get; set; }
+        public IEnumerable<int> CatIds { get; set; }
 
-        public ProductFilter()
+        public ProductFilterBLL()
         {
             CatIds = new List<int>();
         }

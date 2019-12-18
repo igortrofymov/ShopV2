@@ -9,9 +9,4 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj" />
-    <ProjectReference Include="..\ShopV2.DAL\ShopV2.DAL.csproj" />
-  </ItemGroup>
-
 </Project>

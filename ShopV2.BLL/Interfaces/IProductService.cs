@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ShopV2.BLL.DTO;
+using Core.BLL;
 
 namespace ShopV2.BLL.Interfaces
 {
-    public interface IProductService : Iservice<ProductDTO>
+    public interface IProductService : Iservice<ProductBLL>
     {
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Core.DAL;
 using Microsoft.EntityFrameworkCore;
 using ShopV2.DAL.Interfaces;
-using ShopV2.DAL.Models;
 
 namespace ShopV2.DAL.Repositories
 {
