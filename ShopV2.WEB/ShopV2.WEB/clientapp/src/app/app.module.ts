@@ -1,16 +1,26 @@
-import { RouterModule } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+
 
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+
+import { ProductService } from './services/product.service';
+
 import { AppComponent } from './app.component';
 import { ProductFormComponent } from './Components/product-form/product-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+
 import { NavMenuComponent } from './Components/nav-menu/nav-menu.component';
+import { ConfigComponent } from './config/config.component';
+import { ProductsTestComponent } from './Components/products-test/products-test.component';
 
 @NgModule({
   imports: [
+    HttpClientModule,
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     RouterModule.forRoot([
       {path:'',redirectTo: 'home', pathMatch: 'full'},
@@ -19,11 +29,13 @@ import { NavMenuComponent } from './Components/nav-menu/nav-menu.component';
     ])
   ], 
    declarations: [
+    ProductsTestComponent,
+    ConfigComponent,
     AppComponent,
     NavMenuComponent,
     ProductFormComponent
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

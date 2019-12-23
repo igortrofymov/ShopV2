@@ -9,11 +9,6 @@ namespace Core.BLL
         public int? PriceFrom { get; set; }
         public int? PriceTo { get; set; }
         public string Name { get; set; }
-        public IEnumerable<int> CatIds { get; set; }
-
-        public ProductFilterBLL()
-        {
-            CatIds = new List<int>();
-        }
+        public int CatId { get; set; }
     }
 }

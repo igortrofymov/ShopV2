@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using AutoMapper;
 using Core.BLL;
 using Core.DAL;
@@ -27,5 +28,20 @@ namespace ShopV2.BLL.Services
            return allProductsDto;
         }
 
+        public int Create(ProductBLL item)
+        {
+            int id = productRepository.Create(mapper.Map<Product>(item));
+            if (id != 0)
+                return id;
+            else
+                return 0;
+        }
+
+        public IEnumerable<ProductBLL> GetSome(ProductFilterBLL filter)
+        {
+            var prods = productRepository.GetSeveral(mapper.Map<ProductFilter>(filter));
+            var prodsBll = mapper.Map<List<ProductBLL>>(prods);
+            return prodsBll;
+        }
     }
 }

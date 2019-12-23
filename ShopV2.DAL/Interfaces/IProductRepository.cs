@@ -8,6 +8,6 @@ namespace ShopV2.DAL.Interfaces
 {
     public interface IProductRepository : IRepository<Product>
     {
-        IQueryable<Product> GetSeveral();
+        IQueryable<Product> GetSeveral(ProductFilter filter);
     }
 }

@@ -39,11 +39,16 @@ namespace ShopV2.WEB
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddDbContext<ShopDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly("ShopV2.WEB")));
+
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
+
             var mapperConfig = new MapperConfiguration(mc=>mc.AddProfile(new Resolver()));
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
@@ -63,6 +68,12 @@ namespace ShopV2.WEB
                 app.UseHsts();
             }
 
+            app.UseCors(x => x
+                .WithOrigins("http://localhost:4201")
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .AllowAnyHeader());
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseMvc();

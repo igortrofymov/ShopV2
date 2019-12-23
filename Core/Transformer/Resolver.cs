@@ -8,19 +8,20 @@ using Core.WEB;
 
 namespace Core.Transformer
 {
-    class Resolver : Profile
+    public class Resolver : Profile
     {
         public Resolver()
         {
             CreateMap<Product, ProductBLL>().PreserveReferences();
-            CreateMap<List<Product>, List<ProductBLL>>().PreserveReferences();
             CreateMap<ProductBLL, ProductWEB>().PreserveReferences();
-            CreateMap<List<ProductBLL>,List<ProductWEB>>().PreserveReferences();
+
 
             CreateMap<Category, CategoryBLL>().PreserveReferences();
-            CreateMap<List<Category>, List<CategoryBLL>>().PreserveReferences();
             CreateMap<CategoryBLL, CategoryWEB>().PreserveReferences();
-            CreateMap<List<CategoryBLL>, List<CategoryWEB>>().PreserveReferences();
+
+            CreateMap<ProductFilterBLL, ProductFilter>().PreserveReferences();
+            CreateMap<ProductFilterWEB, ProductFilterBLL>().PreserveReferences();
+
         }
     }
 }

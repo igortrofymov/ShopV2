@@ -15,22 +15,31 @@ namespace ShopV2.WEB.Controllers
     [Route("api/[controller]")]
     public class CategoriesController : Controller
     {
+        private ICategoryService catService;
         private IProductService productService;
-        private  IMapper mapper;
+        private IMapper mapper;
 
-        public CategoriesController(IProductService productService, IMapper mapper)
+        public CategoriesController(IProductService productService, IMapper mapper, ICategoryService categoryService)
         {
             this.productService = productService;
             this.mapper = mapper;
+            this.catService = categoryService;
         }
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductWEB>> GetAllProducts()
+        public ActionResult<IEnumerable<CategoryWEB>> GetAllCategories()
         {
+            {
+                IEnumerable<CategoryBLL> cats = catService.GetAll();
+                return mapper.Map<List<CategoryWEB>>(cats.ToList());
+            }
+        }
+
+        [HttpPost]
+        public int Create(ProductWEB productWeb)
         {
-                IEnumerable<ProductBLL> products = productService.GetAll();
-           return mapper.Map<List<ProductBLL>, List<ProductWEB>>(products.ToList());
+           return productService.Create(mapper.Map<ProductBLL>(productWeb));
         }
     }
 }

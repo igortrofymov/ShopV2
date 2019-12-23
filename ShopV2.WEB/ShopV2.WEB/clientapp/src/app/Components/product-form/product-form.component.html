@@ -2,7 +2,17 @@
 <form action="">
     <div class="form-group">
         <label for="category">Category</label>
-        <select id="category" class="form-control"></select>
+        <select id="category" class="form-control" (change)="onCatsChange()" [(ngModel)]="product.categoryId" name="cat">
+            <option value=""></option>
+            <option *ngFor ="let p of categories"  value="{{p.id}}">{{p.name}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="prod">Product</label>
+        <select id="prod" class="form-control" >
+            <option value=""></option>
+            <option *ngFor ="let p of products"  value="{{p.id}}">{{p.name}}</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="name">Name</label>
@@ -15,5 +25,6 @@
     <div class="form-group">
         <label for="price">Price</label>
         <input class="form-control" type="number" id="price">
-    </div>     
+    </div>    
+    <button class="btn btn-primary">Save</button>
 </form>

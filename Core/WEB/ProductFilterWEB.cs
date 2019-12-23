@@ -9,11 +9,7 @@ namespace Core.WEB
         public int? PriceFrom { get; set; }
         public int? PriceTo { get; set; }
         public string Name { get; set; }
-        public IEnumerable<int> CatIds { get; set; }
+        public int CatId { get; set; }
 
-        public ProductFilterWEB()
-        {
-            CatIds = new List<int>();
-        }
     }
 }

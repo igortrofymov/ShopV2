@@ -9,11 +9,6 @@ namespace Core.DAL
         public int? PriceFrom { get; set; }
         public int? PriceTo { get; set; }
         public string Name { get; set; }
-        public List<int> CatIds { get; set; }
-
-        public ProductFilter()
-        {
-            CatIds = new List<int>();
-        }
+        public int CatId { get; set; }
     }
 }

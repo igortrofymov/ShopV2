@@ -8,7 +8,7 @@ namespace ShopV2.DAL.Interfaces
     {
         IEnumerable<T> GetAll();
         T GetById(string id);
-        void Create(T item);
+        int  Create(T item);
         void Update(T item);
         void DeleteById(string id);
     }
