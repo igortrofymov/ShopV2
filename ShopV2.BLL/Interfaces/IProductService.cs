@@ -9,6 +9,9 @@ namespace ShopV2.BLL.Interfaces
 {
     public interface IProductService : Iservice<ProductBLL>
     {
-        IEnumerable<ProductBLL> GetSome(ProductFilterBLL filter);
+        IEnumerable<ProductBLL> GetFiltered(ProductQueryBLL query);
+        ProductBLL Find(int id);
+        void Update(ProductBLL productBll);
+        void Delete(int id);
     }
 }

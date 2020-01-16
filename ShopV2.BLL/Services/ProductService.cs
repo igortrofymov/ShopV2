@@ -37,11 +37,35 @@ namespace ShopV2.BLL.Services
                 return 0;
         }
 
-        public IEnumerable<ProductBLL> GetSome(ProductFilterBLL filter)
+        public IEnumerable<ProductBLL> GetFiltered(ProductQueryBLL query)
         {
-            var prods = productRepository.GetSeveral(mapper.Map<ProductFilter>(filter));
+            var prods = productRepository.GetSeveral(mapper.Map<ProductQuery>(query));
             var prodsBll = mapper.Map<List<ProductBLL>>(prods);
             return prodsBll;
+        }
+
+        public ProductBLL Find(int id)
+        {
+            var product = productRepository.GetById(id);
+            if (product != null)
+            {
+                return mapper.Map<ProductBLL>(product);
+            }
+            else
+            {
+                return new ProductBLL();
+            }
+        }
+
+        public void Update(ProductBLL productBll)
+        {
+            Product p = mapper.Map<Product>(productBll);
+            productRepository.Update(p);
+        }
+
+        public void Delete(int id)
+        {
+            productRepository.DeleteById(id);
         }
     }
 }

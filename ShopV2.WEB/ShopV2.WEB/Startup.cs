@@ -40,9 +40,10 @@ namespace ShopV2.WEB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddDbContext<ShopDBContext>(options =>
+            services.AddDbContext<ShopDBContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly("ShopV2.WEB")));
+
+                    b => b.MigrationsAssembly("ShopV2.WEB")).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking), ServiceLifetime.Scoped);
 
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();

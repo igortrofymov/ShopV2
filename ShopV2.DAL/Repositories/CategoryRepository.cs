@@ -17,16 +17,16 @@ namespace ShopV2.DAL.Repositories
             this.db = db;
         }
 
-        public IEnumerable<Category> GetAll()
+        public IQueryable<Category> GetAll()
         {
-            return this.db.Categories.Include(c=>c.Products).ToList();
+            return this.db.Categories.Include(c=>c.Products);
         }
 
-        public Category GetById(string id)
+        public Category GetById(int id)
         {
             return db.Categories.Find(id);
-            
         }
+
 
         public int Create(Category item)
         {
@@ -40,7 +40,7 @@ namespace ShopV2.DAL.Repositories
             throw new NotImplementedException();
         }
 
-        public void DeleteById(string id)
+        public void DeleteById(int id)
         {
             Category category = db.Categories.Find(id);
             if (category != null)

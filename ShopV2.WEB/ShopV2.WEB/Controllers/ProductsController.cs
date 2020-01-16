@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Core.BLL;
 using Core.WEB;
@@ -21,20 +23,52 @@ namespace ShopV2.WEB.Controllers
         }
 
         [HttpPost]
-        public int Create(ProductWEB productWeb)
+        public int Create([FromBody] ProductWEB productWeb)
         {
             return productService.Create(mapper.Map<ProductBLL>(productWeb));
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductWEB>> GetAllProducts()
+        public ActionResult<IEnumerable<ProductWEB>> GetAllProducts(ProductQueryWEB query)
         {
-            //var products = productService.GetAll();
-            ProductFilterWEB f = new ProductFilterWEB();
-            f.CatId = 17;
-            ProductFilterBLL ff = mapper.Map<ProductFilterWEB,ProductFilterBLL>(f);
-            var products = productService.GetSome(ff);
+            var filterBll = mapper.Map<ProductQueryBLL>(query);
+            var products = productService.GetFiltered(filterBll);
             return mapper.Map<List<ProductBLL>, List<ProductWEB>>(products.ToList());
+        }
+
+        [HttpPut("{Id}")]
+        public IActionResult UpdateProduct([FromBody] ProductWEB productWeb)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var prodBll = productService.Find((int)productWeb.ProductId);
+            if (prodBll == null)
+                return NotFound();
+            productWeb.Created = DateTime.Now;
+            mapper.Map<ProductWEB, ProductBLL>(productWeb, prodBll);
+            productService.Update(prodBll);
+            return Ok(productWeb);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (productService.Find(id) == null)
+                return NotFound();
+            productService.Delete(id);
+            return Ok(id);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProd(int id)
+        {
+            var prodBll = productService.Find(id);
+            if(prodBll.ProductId!=0)
+            return Ok(mapper.Map<ProductWEB>(prodBll));
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

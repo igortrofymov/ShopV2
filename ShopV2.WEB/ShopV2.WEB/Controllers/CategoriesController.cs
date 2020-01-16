@@ -30,10 +30,8 @@ namespace ShopV2.WEB.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<CategoryWEB>> GetAllCategories()
         {
-            {
                 IEnumerable<CategoryBLL> cats = catService.GetAll();
                 return mapper.Map<List<CategoryWEB>>(cats.ToList());
-            }
         }
 
         [HttpPost]

@@ -10,7 +10,7 @@ import { Product } from 'src/app/Product';
 })
 export class ProductsTestComponent implements OnInit {
 
-  product: Product = new Product();
+  product: Product ;
   products:Product[];
   tableMode: boolean = true;
   constructor(private dataService: DataService) { }
@@ -41,7 +41,6 @@ save(){
   this.cancel();
 }
 cancel() {
-  this.product = new Product();
   this.tableMode = true;
 }
 delete(p: Product) {

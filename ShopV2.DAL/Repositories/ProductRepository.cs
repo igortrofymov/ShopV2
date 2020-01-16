@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using Core.DAL;
+using Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 using ShopV2.DAL.Interfaces;
 
@@ -16,12 +18,13 @@ namespace ShopV2.DAL.Repositories
         {
             this.context = context;
         }
-        public IEnumerable<Product> GetAll()
+        public IQueryable<Product> GetAll()
         {
+
             return context.Products.Include(m=>m.Category);
         }
 
-        public Product GetById(string id)
+        public Product GetById(int id)
         {
             return context.Products.Find(id);
         }
@@ -35,11 +38,12 @@ namespace ShopV2.DAL.Repositories
 
         public void Update(Product item)
         {
-            context.Entry(item).State = EntityState.Modified;
+            context.Update<Product>(item);
+            //context.Entry(item).State = EntityState.Modified;
             context.SaveChanges();
         }
 
-        public void DeleteById(string id)
+        public void DeleteById(int id)
         {
             Product product = context.Products.Find(id);
             if (product != null)
@@ -49,28 +53,40 @@ namespace ShopV2.DAL.Repositories
             }
         }
 
-        public IQueryable<Product> GetSeveral(ProductFilter filter)
+        public IQueryable<Product> GetSeveral(ProductQuery query)
         {
 
-            IQueryable<Product> products = context.Products;
-            if (filter.PriceFrom != null)
+            IQueryable<Product> products = context.Products.Include(p=>p.Category);
+            if (query.PriceFrom.HasValue)
             {
-                products = products.Where(p => p.Price > filter.PriceFrom);
+                products = products.Where(p => p.Price >= query.PriceFrom);
             }
-            if (filter.PriceTo != null)
+            if (query.PriceTo.HasValue)
             {
-                products = products.Where(p => p.Price < filter.PriceTo);
+                products = products.Where(p => p.Price <= query.PriceTo);
             }
-            if (filter.Name != null)
+            if (!String.IsNullOrEmpty(query.Name))
             {
-                products = products.Where(p => p.Name.Contains(filter.Name));
+                products = products.Where(p => p.Name.Contains(query.Name));
             }
-            if (filter.CatId != null)
+            if (query.CategoryId.HasValue)
             {
-                products = products.Where(p => p.CategoryId==filter.CatId);
+                products = products.Where(p => p.CategoryId==query.CategoryId);
             }
+
+            string str;
+            Expression<Func<Product, object>> exp;
+            Dictionary<string, Expression<Func<Product, object>>> columnsMap =
+                new Dictionary<string, Expression<Func<Product, object>>>()
+                {
+                    ["category"] = v => v.Category.Name,
+                    ["price"] = p => p.Price,
+                    ["name"] = p => p.Name
+                };
+            products = products.ApplyOrdering(query, columnsMap);
 
             return products;
         }
+
     }
 }

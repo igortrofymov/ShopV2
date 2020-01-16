@@ -14,14 +14,18 @@ namespace Core.Transformer
         {
             CreateMap<Product, ProductBLL>().PreserveReferences();
             CreateMap<ProductBLL, ProductWEB>().PreserveReferences();
-
+            CreateMap<ProductBLL, Product>().PreserveReferences();
+            CreateMap<ProductWEB, ProductBLL>().PreserveReferences();
 
             CreateMap<Category, CategoryBLL>().PreserveReferences();
             CreateMap<CategoryBLL, CategoryWEB>().PreserveReferences();
+            CreateMap<CategoryBLL,Category>().PreserveReferences();
+            CreateMap<CategoryWEB, CategoryBLL>().PreserveReferences();
 
-            CreateMap<ProductFilterBLL, ProductFilter>().PreserveReferences();
-            CreateMap<ProductFilterWEB, ProductFilterBLL>().PreserveReferences();
-
+            CreateMap<ProductQueryBLL, ProductQuery>().PreserveReferences();
+            CreateMap<ProductQueryWEB, ProductQueryBLL>().PreserveReferences();
+            CreateMap<ProductQuery, ProductQueryBLL>().PreserveReferences();
+            CreateMap<ProductQueryBLL, ProductQueryWEB>().PreserveReferences();
         }
     }
 }
